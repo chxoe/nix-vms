@@ -34,6 +34,9 @@
 					];
 				};
 		in {
-			nixosConfigurations.roon = system-from-name "roon";
+			nixosConfigurations = {
+				roon = system-from-name "roon";
+				technitium = system-from-name "technitium";
+			};
 		};
 }
