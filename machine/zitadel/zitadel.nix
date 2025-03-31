@@ -2,7 +2,7 @@
 	hostname = "zitadel";
 	network = "external";
 	##
-	passthrough = pkgs: config: {
+	passthrough = {self}: {pkgs, config, ...}: {
 		services.zitadel = {
 			enable = true;
 			masterKeyFile = "/zitadel/master-key";
