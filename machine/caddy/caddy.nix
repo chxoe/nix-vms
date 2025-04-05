@@ -3,7 +3,7 @@
 	network = "external";
 	##
 	passthrough = {self, private, ...}: {pkgs, config, ...}:
-		in {
+		{
 			services.caddy = {
 				enable = true;
 				virtualHosts."${private.domains.jumpbox}".extraConfig = ''
