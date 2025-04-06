@@ -27,6 +27,9 @@
 	};
 	environment.systemPackages = with pkgs; [ vim wget git curl ];
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) machineConfig.unfree or [];
+	nix.extraOptions = ''
+		experimental-features = nix-command flakes
+	'';
 	services.openssh.enable = true;
 	system.stateVersion = "24.11";
 }
