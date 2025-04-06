@@ -1,7 +1,7 @@
 {
 	description = "System configuration helper";
 	inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-	inputs.private.url = "git+ssh://git@github.com/chxoe/nix-vms-private.git";
+	inputs.private.url = "git+ssh://git@github.com/chxoe/nix-vms-private.git?ref=main";
 	outputs = { self, nixpkgs, private }@inputs:
 		let
 			system-from-config = machineConfig: machineConfig.system or "x86_64-linux";
