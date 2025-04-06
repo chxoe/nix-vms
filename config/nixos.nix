@@ -5,7 +5,7 @@
 	];
 	boot.loader.grub = { enable = true; device = "/dev/sda"; };
 	networking.hostName = machineConfig.hostname or "nixos";
-	networking.interfaces.ens3.ipv4.addresses = lib.mkIf (machineConfig.staticIp != null) [
+	networking.interfaces.ens3.ipv4.addresses = lib.mkIf (machineConfig?staticIp) [
 		{ address = machineConfig.staticIp; prefixLength = 24; }
 	];
 	networking.defaultGateway = {
