@@ -18,6 +18,6 @@
 			};
 			services.tailscale.enable = true;
 			services.tailscale.useRoutingFeatures = "client";
-			services.tailscale.extraSetFlags = [ "--exit-node=100.101.66.7" "--ssh" ];
+			services.tailscale.extraSetFlags = [ "--exit-node=jumpbox" "--ssh" ];
 		};
 }
