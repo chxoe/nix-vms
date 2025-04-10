@@ -1,6 +1,6 @@
 {
 	hostname = "caddy";
-	network = "external";
+	network = "tailscale";
 	##
 	passthrough = {self, private, ...}: {pkgs, config, ...}:
 		{
@@ -10,14 +10,11 @@
 					respond "If you can see this, ${private.domains.jumpbox} is working."
 				'';
 				virtualHosts."${private.domains.zitadel}".extraConfig = ''
-					reverse_proxy h2c://10.0.2.2:8080
+					reverse_proxy h2c://zitadel:8080
 				'';
 				virtualHosts."${private.domains.files}".extraConfig = ''
-					reverse_proxy http://10.0.2.2:12080
+					reverse_proxy http://misc-trusted:12080
 				'';
 			};
-			services.tailscale.enable = true;
-			services.tailscale.useRoutingFeatures = "client";
-			services.tailscale.extraSetFlags = [ "--exit-node=jumpbox" "--ssh" ];
 		};
 }

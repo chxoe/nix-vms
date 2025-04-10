@@ -1,6 +1,6 @@
 {
 	hostname = "zitadel";
-	network = "external";
+	network = "tailscale";
 	##
 	passthrough = {self, private, ...}: {pkgs, config, ...}: {
 		services.zitadel = {
