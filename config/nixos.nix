@@ -36,7 +36,7 @@
 	services.tailscale = lib.mkIf (machineConfig.network == "tailscale") {
 		enable = true;
 		useRoutingFeatures = "client";
-		extraSetFlags = [ "--exit-node=jumpbox" "--ssh" ]
+		extraSetFlags = [ "--exit-node=jumpbox" "--ssh" ];
 	};
 	system.stateVersion = "24.11";
 }
