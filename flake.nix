@@ -2,7 +2,8 @@
 	description = "System configuration helper";
 	inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 	inputs.private.url = "git+ssh://git@github.com/chxoe/nix-vms-private.git?ref=main";
-	outputs = { self, nixpkgs, private }@inputs:
+	inputs.naersk.url = "github:nix-community/naersk";
+	outputs = { self, nixpkgs, private, naersk }@inputs:
 		let
 			system-from-config = machineConfig: machineConfig.system or "x86_64-linux";
 			machine-pkgs-from-config = machineConfig:
@@ -23,7 +24,11 @@
 						configDir = configDir;
 						machineConfig = machineConfig;
 						userConfig = userConfig;
-						passthrough = (if machineConfig?passthrough then (machineConfig.passthrough {self=self; private=private; }) else ({...}:{}));
+						passthrough = (if machineConfig?passthrough then (machineConfig.passthrough {
+								self = self;
+								private = private;
+								naersk = let system = system-from-config machineConfig; in naersk.outputs.lib."${system}";
+							}) else ({...}:{}));
 						inherit inputs;
 					};
 					modules = [
@@ -36,6 +41,7 @@
 				technitium = system-from-name "technitium";
 				caddy = system-from-name "caddy";
 				zitadel = system-from-name "zitadel";
+				misc-trusted = system-from-name "misc-trusted";
 			};
 		};
 }
