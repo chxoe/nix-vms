@@ -13,7 +13,7 @@
 					reverse_proxy h2c://zitadel:8080
 				'';
 				virtualHosts."${private.domains.files}".extraConfig = ''
-					reverse_proxy http://misc-trusted:12080
+					reverse_proxy http://misc-trusted:80
 				'';
 			};
 		};

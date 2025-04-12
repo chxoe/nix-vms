@@ -2,18 +2,20 @@
 	hostname = "misc-trusted";
 	network = "tailscale";
 	##
-	passthrough = {naersk, ...}: {pkgs, config, ...}: {
+	passthrough = {naersk, self, ...}: {pkgs, config, ...}: {
 		systemd.services.drive = let
-			drive = builtins.fetchGit { "url" = "git@github.com:chxoe/drive.git"; "ref" = "main"; "rev" = "683975d11b5cb3e8b4eda36f4a06c00efeffe5fb"; };
-			driveDerivation = naersk.buildPackage {src=drive.outPath;};
+			driveSource = builtins.fetchGit { "url" = "git@github.com:chxoe/drive.git"; "ref" = "main"; "rev" = "cd47d4a9eac50a7ca20baa2e5930bae24c2bee64"; };
+			driveDerivation = naersk.buildPackage {src=driveSource.outPath;};
 		in {
 			enable = true;
 			path = [ ];
 			serviceConfig = {
-				ExecStart = "${driveDerivation}/server";
+				ExecStart = "${self}/util/systemd-exec.sh ${driveDerivation}/bin/server";
 				AmbientCapabilities = "cap_net_bind_service";
 				CapabilityBoundingSet = "cap_net_bind_service";
-				WorkingDirectory = "/drive";
+				StateDirectory = "drive";
+				LogsDirectory = "drive";
+				WorkingDirectory = "${driveSource}";
 			};
 		};
 	};
