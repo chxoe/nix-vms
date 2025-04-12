@@ -4,7 +4,7 @@
 	##
 	passthrough = {naersk, self, ...}: {pkgs, config, ...}: {
 		systemd.services.drive = let
-			driveSource = builtins.fetchGit { "url" = "git@github.com:chxoe/drive.git"; "ref" = "main"; "rev" = "cd47d4a9eac50a7ca20baa2e5930bae24c2bee64"; };
+			driveSource = builtins.fetchGit { "url" = "git@github.com:chxoe/drive.git"; "ref" = "main"; "rev" = "1ddd9538dd89e820d1c23e2f7b870973d7bc5801"; };
 			driveDerivation = naersk.buildPackage { src = "${driveSource}"; };
 		in {
 			enable = true;
