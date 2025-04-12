@@ -5,7 +5,7 @@
 	passthrough = {naersk, self, ...}: {pkgs, config, ...}: {
 		systemd.services.drive = let
 			driveSource = builtins.fetchGit { "url" = "git@github.com:chxoe/drive.git"; "ref" = "main"; "rev" = "cd47d4a9eac50a7ca20baa2e5930bae24c2bee64"; };
-			driveDerivation = naersk.buildPackage {src=driveSource.outPath;};
+			driveDerivation = naersk.buildPackage { src = "${driveSource}"; };
 		in {
 			enable = true;
 			path = [ ];
@@ -17,6 +17,7 @@
 				LogsDirectory = "drive";
 				WorkingDirectory = "${driveSource}";
 			};
+			wantedBy = [ "multi-user.target" ];
 		};
 	};
 }
