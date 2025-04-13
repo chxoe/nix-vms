@@ -1,7 +1,7 @@
 {
 	hostname = "technitium";
-	staticIp = "10.0.0.202";
 	network = "local";
+	staticIp = "10.0.0.202";
 	##
 	passthrough = {self,...}: {pkgs, config, ...}: {
 			services.technitium-dns-server = {
