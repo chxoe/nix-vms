@@ -3,9 +3,8 @@
 	network = "tailscale";
 	##
 	passthrough = {rust-service, drive, ...}: {pkgs, config, ...}: {
-		inherit rust-service {
-			name = "drive";
-			source = ${drive};
+		systemd.services.drive = rust-service {
+			source = drive;
 			executable = "server";
 		};
 	};

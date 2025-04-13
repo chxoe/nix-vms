@@ -4,7 +4,7 @@
 		nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 		private.url = "git+ssh://git@github.com/chxoe/nix-vms-private.git?ref=main";
 		naersk.url = "github:nix-community/naersk";
-		drive.url = "git+ssh://git@github.com:chxoe/drive.git?ref=main";
+		drive = { url = "git+ssh://git@github.com/chxoe/drive.git?ref=main"; flake = false; };
 	};
 	outputs = { self, nixpkgs, private, naersk, drive }@inputs:
 		let
@@ -15,9 +15,8 @@
 					system = system;
 					config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.legacyPackages."${system}".lib.getName pkg) machineConfig.unfree or [];
 				};
-			rust-service = {system}: {name, source, executable}: {
-				systemd.services."${name}" = let
-					derivation = naersk.ouputs.lib."${system}".buildPackage { src = source; };
+			rust-service = system: {source, executable}:
+				let builtSource = naersk.outputs.lib."${system}".buildPackage { src = "${source}"; };
 				in {
 					enable = true;
 					
@@ -27,13 +26,13 @@
 					# See man systemd.exec
 					serviceConfig = {
 						# Run the given executable, writing logs out to the log directory (see below). 
-						ExecStart = "${self}/util/systemd-exec.sh ${derivation}/bin/${executable}";
+						ExecStart = "${self}/util/systemd-exec.sh ${builtSource}/bin/${executable}";
 						
 						# For persistent data. Accessible via $STATE_DIRECTORY, location = /var/lib/${name}
-						StateDirectory = name;
+						StateDirectory = "%N";
 						
 						# For logs, used by util/systemd-exec.sh. Accessible via $LOGS_DIRECTORY, location = /var/log/${name}
-						LogsDirectory = name;
+						LogsDirectory = "%N";
 						
 						# Use the location of the source code (read-only) in the Nix store as the working directory.
 						WorkingDirectory = "${source}";
@@ -43,7 +42,6 @@
 						CapabilityBoundingSet = "cap_net_bind_service";
 					};
 				};
-			};
 			system-from-name = machine: 
 				let
 					userConfig = import "${self}/config/user.nix";
@@ -60,7 +58,7 @@
 								self = self;
 								private = private;
 								rust-service = rust-service (system-from-config machineConfig);
-								inherit drive;
+								drive = drive;
 							}) else ({...}:{}));
 						inherit inputs;
 					};
