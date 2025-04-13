@@ -1,6 +1,6 @@
 { configDir, machineConfig, selfDir, userConfig, config, lib, pkgs, private, passthrough, ... }: {
 	imports = [ 
-		"${configDir}/hardware-configuration.nix"
+		( if builtins.pathExists "${configDir}/hardware-configuration.nix" then "${configDir}/hardware-configuration.nix" else "${selfDir}/config/vm-hardware-configuration.nix" )
 		passthrough
 	];
 	boot.loader.grub = { enable = true; device = "/dev/sda"; };
