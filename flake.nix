@@ -75,7 +75,7 @@
 				
 				# Publicly associated with me (app names and details hidden for privacy)
 				jumpbox-public = system-from-name "jumpbox-public";
-					# caddy-public = system-from-name "caddy-public";
+					caddy-public = system-from-name "caddy-public";
 						# auth-public = system-from-name "auth-public";
 						# feeds-public = system-from-name "feeds-public";
 				
