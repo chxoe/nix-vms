@@ -1,6 +1,7 @@
 {
 	hostname = "zitadel";
 	network = "tailscale";
+	exitNode = "jumpbox";
 	##
 	passthrough = {self, private, ...}: {pkgs, config, ...}: {
 		services.zitadel = {
