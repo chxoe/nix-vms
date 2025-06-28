@@ -3,7 +3,7 @@
 		( if builtins.pathExists "${configDir}/hardware-configuration.nix" then "${configDir}/hardware-configuration.nix" else "${selfDir}/config/vm-hardware-configuration.nix" )
 		passthrough
 	];
-	boot.loader.grub = { enable = true; device = "/dev/sda"; };
+	boot.loader.grub = { enable = true; device = lib.mkDefault "/dev/sda"; };
 	networking.hostName = machineConfig.hostname or "nixos";
 	networking.interfaces.ens3.ipv4.addresses = lib.mkIf (machineConfig?staticIp) [
 		{ address = machineConfig.staticIp; prefixLength = 24; }
