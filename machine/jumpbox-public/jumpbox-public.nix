@@ -24,5 +24,6 @@
 				After="network.target tailscaled.service sys-subsystem-net-devices-tailscale0.device";
 			};
 		};
+		boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 	};
 }
