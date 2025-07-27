@@ -13,23 +13,16 @@
 			extraUpFlags = [ "--ssh" "--advertise-exit-node" ];
 			extraSetFlags = [ "--ssh" "--advertise-exit-node" ];
 		};
-		networking.nftables.enable = true;
-		networking.nftables.ruleset = ''
-			table ip nat {
-				chain PREROUTING {
-					iifname "ens5" \
-					ip protocol tcp \
-					tcp dport { 80, 443 } \
-					dnat to caddy-public
-				}
-				chain POSTROUTING {
-					oifname "tailscale0" \
-					ip protocol tcp \
-					ip daddr caddy-public \
-					tcp dport { 80, 443 } \
-					masquerade
-				}
-			}
-		'';
+		networking.nftables.enable = false;
+		systemd.services.jumpbox = {
+			enable = true;
+			serviceConfig = {
+				ExecStart = "{self}/iptables.sh";
+				Type="oneshot";
+				Restart="on-failure";
+				RestartSec=30;
+				After="network.target tailscaled.service sys-subsystem-net-devices-tailscale0.device";
+			};
+		};
 	};
 }
