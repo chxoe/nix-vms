@@ -5,8 +5,9 @@
 		private.url = "git+ssh://git@github.com/chxoe/nix-vms-private.git?ref=main";
 		naersk.url = "github:nix-community/naersk";
 		drive = { url = "git+ssh://git@github.com/chxoe/drive.git?ref=main"; flake = false; };
+		aggregator = { url = "git+ssh://git@github.com/chxoe/aggregator.git?ref=main"; flake = false; };
 	};
-	outputs = { self, nixpkgs, private, naersk, drive }@inputs:
+	outputs = { self, nixpkgs, private, naersk, drive, aggregator }@inputs:
 		let
 			system-from-config = machineConfig: machineConfig.system or "x86_64-linux";
 			machine-pkgs-from-config = machineConfig:
@@ -42,6 +43,18 @@
 						CapabilityBoundingSet = "cap_net_bind_service";
 					};
 				};
+			java-jar-service = pkgs: {source, jar}: {
+					enable = true;
+					wantedBy = [ "multi-user.target" ];
+					serviceConfig = {
+						ExecStart = "${self}/util/systemd-exec.sh ${nixpkgs.lib.getExe pkgs.jdk} -jar ${jar}";
+						StateDirectory = "%N";
+						LogsDirectory = "%N";
+						WorkingDirectory = "${source}";
+						AmbientCapabilities = "cap_net_bind_service";
+						CapabilityBoundingSet = "cap_net_bind_service";
+					};
+				};
 			system-from-name = machine: 
 				let
 					userConfig = import "${self}/config/user.nix";
@@ -59,7 +72,9 @@
 								configDir = configDir;
 								private = private;
 								rust-service = rust-service (system-from-config machineConfig);
+								java-jar-service = java-jar-service (machinePkgs);
 								drive = drive;
+								aggregator = aggregator;
 							}) else ({...}:{}));
 						inherit inputs;
 					};
@@ -78,7 +93,7 @@
 				jumpbox-public = system-from-name "jumpbox-public";
 					caddy-public = system-from-name "caddy-public";
 						# auth-public = system-from-name "auth-public";
-						# feeds-public = system-from-name "feeds-public";
+						aggregator = system-from-name "aggregator";
 				
 				# Everything in-between
 				# jumpbox = system-from-name "jumpbox";
