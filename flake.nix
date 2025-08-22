@@ -47,7 +47,7 @@
 					enable = true;
 					wantedBy = [ "multi-user.target" ];
 					serviceConfig = {
-						ExecStart = "${self}/util/systemd-exec.sh ${nixpkgs.lib.getExe pkgs.jdk} -jar ${jar}";
+						ExecStart = "${self}/util/systemd-exec.sh '${nixpkgs.lib.getExe pkgs.jdk} -jar ${jar}'";
 						StateDirectory = "%N";
 						LogsDirectory = "%N";
 						WorkingDirectory = "${source}";
