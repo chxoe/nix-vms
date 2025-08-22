@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1755887834,
-        "narHash": "sha256-R4ZH7wW6eXnRYzsevicWYlSaRj0Dvjiu8UH123LNRJU=",
+        "lastModified": 1755889526,
+        "narHash": "sha256-RnSKdNVRpKS74sehFCCQWBugfBV17z5QnofgZEYhlN4=",
         "ref": "main",
-        "rev": "e8904771da3374c2f4b09acf2006c643047c10e6",
-        "revCount": 352,
+        "rev": "45f4d2fcd2096b88a6c30b14a073704a3dc583e2",
+        "revCount": 353,
         "type": "git",
         "url": "ssh://git@github.com/chxoe/aggregator.git"
       },
