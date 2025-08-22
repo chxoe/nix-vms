@@ -27,6 +27,11 @@
 		},
 		{
 			"action": "accept",
+			"src":    ["caddy-public"],
+			"dst":    ["aggregator:8081"]
+		},
+		{
+			"action": "accept",
 			"src":    ["*"],
 			"dst":    ["autogroup:internet:*"]
 		},
@@ -49,6 +54,7 @@
 		"caddy":        $caddy,
 		"host":         $host,
 		"zitadel":      $zitadel,
+		"aggregator":   $aggregator,
 		"misc-trusted": $misc_trusted,
 		"caddy-public": $caddy_public,
 		"jumpbox-public": $jumpbox_public
