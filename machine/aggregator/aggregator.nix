@@ -8,16 +8,16 @@
 			source = aggregator;
 			jar = "${private.aggregatorJarFile}";
 		};
-		ensureUsers = [
-			{
-				name = "aggregator";
-				ensureClauses = { superuser = true; };
-			}
-		];
 		services.postgresql = {
 			enable = true;
 			package = pkgs.postgresql_15;
 			dataDir = "/postgresql/data";
+			ensureUsers = [
+				{
+					name = "aggregator";
+					ensureClauses = { superuser = true; };
+				}
+			];
 			authentication = pkgs.lib.mkOverride 10 ''
 				#type	db	user			method
 				local	all	all			trust
