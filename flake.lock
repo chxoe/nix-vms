@@ -64,11 +64,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1752689277,
-        "narHash": "sha256-uldUBFkZe/E7qbvxa3mH1ItrWZyT6w1dBKJQF/3ZSsc=",
+        "lastModified": 1769799857,
+        "narHash": "sha256-88IFXZ7Sa1vxbz5pty0Io5qEaMQMMUPMonLa3Ls/ss4=",
         "owner": "nix-community",
         "repo": "naersk",
-        "rev": "0e72363d0938b0208d6c646d10649164c43f4d64",
+        "rev": "9d4ed44d8b8cecdceb1d6fd76e74123d90ae6339",
         "type": "github"
       },
       "original": {
@@ -111,11 +111,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1757487488,
-        "narHash": "sha256-zwE/e7CuPJUWKdvvTCB7iunV4E/+G0lKfv4kk/5Izdg=",
+        "lastModified": 1770562336,
+        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ab0f3607a6c7486ea22229b92ed2d355f1482ee0",
+        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
         "type": "github"
       },
       "original": {
@@ -127,11 +127,11 @@
     },
     "private": {
       "locked": {
-        "lastModified": 1757790394,
-        "narHash": "sha256-WLchuaxISBrWZDon7yWF67EvfXPJlCPmMj5mUsDlUTA=",
+        "lastModified": 1770863845,
+        "narHash": "sha256-6++w9edVyiF7Qx8a2auCWulJP+zgQQUZEHxB8+7+Q/c=",
         "ref": "main",
-        "rev": "9ed1344495d955a893ad939adec9102f385649bc",
-        "revCount": 10,
+        "rev": "ba12592cb78e7d57fc61cf53eaec03ad626b29f5",
+        "revCount": 12,
         "type": "git",
         "url": "ssh://git@github.com/chxoe/nix-vms-private.git"
       },
