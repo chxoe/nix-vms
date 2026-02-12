@@ -20,24 +20,24 @@
 				let builtSource = naersk.outputs.lib."${system}".buildPackage { src = "${source}"; };
 				in {
 					enable = true;
-					
+
 					# Auto start the service on boot.
 					wantedBy = [ "multi-user.target" ];
-					
+
 					# See man systemd.exec
 					serviceConfig = {
-						# Run the given executable, writing logs out to the log directory (see below). 
+						# Run the given executable, writing logs out to the log directory (see below).
 						ExecStart = "${self}/util/systemd-exec.sh ${builtSource}/bin/${executable}";
-						
+
 						# For persistent data. Accessible via $STATE_DIRECTORY, location = /var/lib/${name}
 						StateDirectory = "%N";
-						
+
 						# For logs, used by util/systemd-exec.sh. Accessible via $LOGS_DIRECTORY, location = /var/log/${name}
 						LogsDirectory = "%N";
-						
+
 						# Use the location of the source code (read-only) in the Nix store as the working directory.
 						WorkingDirectory = "${source}";
-						
+
 						# Allow services to bind to low # ports
 						AmbientCapabilities = "cap_net_bind_service";
 						CapabilityBoundingSet = "cap_net_bind_service";
@@ -55,7 +55,7 @@
 						CapabilityBoundingSet = "cap_net_bind_service";
 					};
 				};
-			system-from-name = machine: 
+			system-from-name = machine:
 				let
 					userConfig = import "${self}/config/user.nix";
 					machineConfig = import "${self}/machine/${machine}/${machine}.nix";
@@ -71,6 +71,9 @@
 								self = self;
 								configDir = configDir;
 								private = private;
+								modules = {
+									matrix-stack = import "${self}/modules/matrix-stack.nix";
+								};
 								rust-service = rust-service (system-from-config machineConfig);
 								java-jar-service = java-jar-service (machinePkgs);
 								drive = drive;
@@ -84,24 +87,24 @@
 				};
 		in {
 			nixosConfigurations = {
-				
+
 				# Local network only
 				roon = system-from-name "roon";
 				technitium = system-from-name "technitium";
-				
+
 				# Publicly associated with me (app names and details hidden for privacy)
 				jumpbox-public = system-from-name "jumpbox-public";
 					caddy-public = system-from-name "caddy-public";
 						# auth-public = system-from-name "auth-public";
 						aggregator = system-from-name "aggregator";
 				matrix = system-from-name "matrix";
-				
+
 				# Everything in-between
 				# jumpbox = system-from-name "jumpbox";
 					caddy = system-from-name "caddy";
 						zitadel = system-from-name "zitadel";
 						misc-trusted = system-from-name "misc-trusted";
-				
+
 				# Never associated with me
 				# jumpbox-private = system-from-name "jumpbox-private";
 					# caddy-private = system-from-name "caddy-private";
@@ -109,4 +112,3 @@
 			};
 		};
 }
-
