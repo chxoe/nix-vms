@@ -20,13 +20,14 @@
       "locked": {
         "lastModified": 1743884786,
         "narHash": "sha256-cVeTcPV+wp0MiPUvywSiJgMoo32gGxK5d7oY+y4BQ7A=",
-        "ref": "refs/heads/main",
+        "ref": "main",
         "rev": "c051837b95c65d30d136d79ede11df27a2cc3b50",
         "revCount": 6,
         "type": "git",
         "url": "ssh://git@github.com/chxoe/nix-vms-private.git"
       },
       "original": {
+        "ref": "main",
         "type": "git",
         "url": "ssh://git@github.com/chxoe/nix-vms-private.git"
       }
