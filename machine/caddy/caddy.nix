@@ -7,7 +7,7 @@
 			services.caddy = {
 				enable = true;
 				virtualHosts."${private.domains.jumpbox}".extraConfig = ''
-					respond "If you can see this, ${domains.jumpbox} is working."
+					respond "If you can see this, ${private.domains.jumpbox} is working."
 				'';
 				virtualHosts."${private.domains.zitadel}".extraConfig = ''
 					reverse_proxy h2c://10.0.2.2:8080
