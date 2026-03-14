@@ -10,6 +10,9 @@
 				virtualHosts."${private.domains.jumpbox-public}".extraConfig = ''
 					respond "If you can see this, ${private.domains.jumpbox-public} is working."
 				'';
+				virtualHosts."${private.domains.aggregator}".extraConfig = ''
+					reverse_proxy http://aggregator:8081;
+				'';
 			};
 		};
 }
