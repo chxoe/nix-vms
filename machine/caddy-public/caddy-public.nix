@@ -1,6 +1,7 @@
 {
 	hostname = "caddy-public";
 	network = "tailscale";
+	exitNode = "jumpbox-public";
 	##
 	passthrough = {self, private, ...}: {pkgs, config, ...}:
 		{
