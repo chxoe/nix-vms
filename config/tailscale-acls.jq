@@ -29,6 +29,11 @@
 			"action": "accept",
 			"src":    ["*"],
 			"dst":    ["autogroup:internet:*"]
+		},
+		{
+			"action": "accept",
+			"src": ["misc-trusted"],
+			"dst": ["tag:ssh:*"]
 		}
 	],
 	"ssh": [
