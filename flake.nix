@@ -5,7 +5,7 @@
 		private.url = "git+ssh://git@github.com/chxoe/nix-vms-private.git?ref=main";
 		naersk.url = "github:nix-community/naersk";
 		drive = { url = "git+ssh://git@github.com/chxoe/drive.git?ref=main"; flake = false; };
-		aggregator = { url = "git+ssh://git@github.com/chxoe/aggregator.git?ref=main"; flake = false; };
+		aggregator.url = "git+ssh://git@github.com/chxoe/aggregator.git?ref=main";
 	};
 	outputs = { self, nixpkgs, private, naersk, drive, aggregator }@inputs:
 		let
