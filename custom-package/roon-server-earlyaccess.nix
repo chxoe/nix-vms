@@ -17,11 +17,11 @@
 }:
 stdenv.mkDerivation {
   pname = "roon-server-earlyaccess";
-  version = "2.48.1515";
+  version = "2.48.1526";
   
   src = fetchurl {
     url = "https://download.roonlabs.com/builds/earlyaccess/RoonServer_linuxx64.tar.bz2";
-    hash = "sha256-NIIwWoKCERG2FW31TnN95Jmmnqe4ZnYffG25qmkfSJs=";
+    hash = "sha256-sZpS7kDqSt9C+zY0J+EGckr0z9euelgWlk2bo9706ic=";
   };
 
   dontConfigure = true;
