@@ -68,11 +68,28 @@
 				};
 		in {
 			nixosConfigurations = {
+				
+				# Local network only
 				roon = system-from-name "roon";
 				technitium = system-from-name "technitium";
-				caddy = system-from-name "caddy";
-				zitadel = system-from-name "zitadel";
-				misc-trusted = system-from-name "misc-trusted";
+				
+				# Publicly associated with me (app names and details hidden for privacy)
+				jumpbox-public = system-from-name "jumpbox-public";
+					# caddy-public = system-from-name "caddy-public";
+						# auth-public = system-from-name "auth-public";
+						# feeds-public = system-from-name "feeds-public";
+				
+				# Everything in-between
+				# jumpbox = system-from-name "jumpbox";
+					caddy = system-from-name "caddy";
+						zitadel = system-from-name "zitadel";
+						misc-trusted = system-from-name "misc-trusted";
+				
+				# Never associated with me
+				# jumpbox-private = system-from-name "jumpbox-private";
+					# caddy-private = system-from-name "caddy-private";
+						# mastodon-private = system-from-name "mastodon-private";
 			};
 		};
 }
+
