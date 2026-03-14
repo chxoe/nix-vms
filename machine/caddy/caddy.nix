@@ -19,5 +19,4 @@
 			};
 			services.tailscale.enable = true;
 		};
-	};
 }
