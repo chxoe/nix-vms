@@ -56,6 +56,7 @@
 						userConfig = userConfig;
 						passthrough = (if machineConfig?passthrough then (machineConfig.passthrough {
 								self = self;
+								configDir = configDir;
 								private = private;
 								rust-service = rust-service (system-from-config machineConfig);
 								drive = drive;
