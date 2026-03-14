@@ -12,6 +12,16 @@
 		},
 		{
 			"action": "accept",
+			"src":    ["caddy"],
+			"dst":    ["zitadel:8080"]
+		},
+		{
+			"action": "accept",
+			"src":    ["caddy"],
+			"dst":    ["misc-trusted:80"]
+		},
+		{
+			"action": "accept",
 			"src":    ["*"],
 			"dst":    ["autogroup:internet:*"]
 		}
@@ -25,9 +35,11 @@
 		}
 	],
 	"hosts": {
-		"jumpbox": $jumpbox,
-		"caddy":   $caddy,
-		"host":    $host
+		"jumpbox":      $jumpbox,
+		"caddy":        $caddy,
+		"host":         $host,
+		"zitadel":      $zitadel,
+		"misc-trusted": $misc_trusted
 	},
 	"tagOwners": {
 		"tag:ssh": ["autogroup:admin"]
