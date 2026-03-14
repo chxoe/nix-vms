@@ -3,8 +3,8 @@
 	inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 	inputs.agenix.url = "github:ryantm/agenix";
 	outputs = { self, nixpkgs, agenix }@inputs:
-		let system-from-config = machineConfig: machineConfig.system or "x86_64-linux";
-		in let
+		let
+			system-from-config = machineConfig: machineConfig.system or "x86_64-linux";
 			machine-pkgs-from-config = machineConfig:
 				let system = system-from-config machineConfig;
 				in import nixpkgs {
