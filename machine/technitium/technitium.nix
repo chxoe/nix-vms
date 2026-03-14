@@ -5,13 +5,13 @@
 	##
 	passthrough = pkgs: config:
 		let
-			pkgs = pkgs // {
+			customPkgs = pkgs // {
 				technitium-dns-server-library = pkgs.callPackage "${config}/custom-package/technitium-dns-server-library-latest.nix" {};
 			};
 		in {
 			services.technitium-dns-server = {
 				enable = true;
-				package = pkgs.callPackage "${config}/custom-package/technitium-dns-server-latest.nix" {};
+				package = customPkgs.callPackage "${config}/custom-package/technitium-dns-server-latest.nix" {};
 			};
 		};
 }
