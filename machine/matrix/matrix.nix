@@ -2,21 +2,17 @@
 	hostname = "matrix";
 	network = "local";
 	staticIp = "10.0.0.203";
-	##
-	passthrough = {private, modules, ...}: {pkgs, ...}@moduleInputs: {
-			networking.enableIPv6 = false;
-			networking.firewall.enable = pkgs.lib.mkForce true;
-		}
-		// modules.matrix-stack {
-			nginx = {
-				acme-email = private.emails."matrix-acme";
-			};
-			element = {
-				domain = private.domains.element;
-			};
+	passthrough = {private, modules, ...}: {pkgs, ...}@moduleInputs:
+		modules.matrix-stack {
+			nginx.acme-email = private.emails."matrix-acme";
+			element.domain = private.domains.element;
 			matrix = {
 				domain = private.domains.matrix;
 				registration-secret = private.matrixRegistrationSecret;
 			};
-		} moduleInputs;
+		} moduleInputs
+		// {
+			networking.enableIPv6 = false;
+			networking.firewall.enable = pkgs.lib.mkForce true;
+		};
 }
