@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "drive": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744495300,
+        "narHash": "sha256-5kyxDO7h72no21MXUO9ntNy7zhvIYOtC/Jl39zTtRyA=",
+        "ref": "main",
+        "rev": "1ddd9538dd89e820d1c23e2f7b870973d7bc5801",
+        "revCount": 23,
+        "type": "git",
+        "url": "ssh://git@github.com/chxoe/drive.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/chxoe/drive.git"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -68,6 +85,7 @@
     },
     "root": {
       "inputs": {
+        "drive": "drive",
         "naersk": "naersk",
         "nixpkgs": "nixpkgs_2",
         "private": "private"
