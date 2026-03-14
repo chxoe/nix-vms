@@ -74,7 +74,7 @@
 								rust-service = rust-service (system-from-config machineConfig);
 								java-jar-service = java-jar-service (machinePkgs);
 								drive = drive;
-								aggregator = aggregator.outputs.defaultPackage."$(system-from-config machineConfig)";
+								aggregator = aggregator.outputs.defaultPackage.${system-from-config machineConfig};
 							}) else ({...}:{}));
 						inherit inputs;
 					};
