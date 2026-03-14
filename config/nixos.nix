@@ -11,10 +11,12 @@
 	networking.defaultGateway = {
 		"local" = { interface = "ens3"; address = "10.0.0.200"; };
 		"external" = null;
+		"tailscale" = null;
 	}."${machineConfig.network}";
 	networking.nameservers = {
 		"local" = [ (import "${selfDir}/machine/technitium/technitium.nix").staticIp ];
 		"external" = [ ];
+		"tailscale" = [ ];
 	}."${machineConfig.network}";
 	networking.networkmanager.enable = true;
 	networking.firewall.enable = false;
@@ -31,5 +33,10 @@
 		experimental-features = nix-command flakes
 	'';
 	services.openssh.enable = true;
+	services.tailscale = lib.mkIf (machineConfig.network == "tailscale") {
+		enable = true;
+		useRoutingFeatures = "client";
+		extraSetFlags = [ "--exit-node=jumpbox" "--ssh" ]
+	};
 	system.stateVersion = "24.11";
 }
