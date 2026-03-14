@@ -16,6 +16,9 @@
 				virtualHosts."${private.domains.files}".extraConfig = ''
 					reverse_proxy http://misc-trusted:80
 				'';
+				virtualHosts."${private.domains.monitor}".extraConfig = ''
+					reverse_proxy http://misc-trusted:8082
+				'';
 			};
 		};
 }
