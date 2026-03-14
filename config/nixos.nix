@@ -7,9 +7,11 @@
 	];
 	networking.defaultGateway = {
 		"local" = { interface = "ens3"; address = "10.0.0.200"; };
+		"external" = null;
 	}."${machineConfig.network}";
 	networking.nameservers = {
 		"local" = [ (import "${selfDir}/machine/technitium/technitium.nix").staticIp ];
+		"external" = [ ];
 	}."${machineConfig.network}";
 	networking.networkmanager.enable = true;
 	networking.firewall.enable = false;
