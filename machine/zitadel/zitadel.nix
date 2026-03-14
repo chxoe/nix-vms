@@ -2,14 +2,14 @@
 	hostname = "zitadel";
 	network = "external";
 	##
-	passthrough = {self}: {pkgs, config, ...}: {
+	passthrough = {self, private, ...}: {pkgs, config, ...}: {
 		services.zitadel = {
 			enable = true;
 			masterKeyFile = "/zitadel/master-key";
 			settings = {
 				Port = 8080;
 				ExternalPort = 443;
-				ExternalDomain = (import "${config}/config/domains.nix").zitadel;
+				ExternalDomain = private.domains.zitadel;
 				ExternalSecure = true;
 				Database = {
 					postgres = {

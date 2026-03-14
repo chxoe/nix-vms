@@ -1,8 +1,8 @@
 {
 	description = "System configuration helper";
 	inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-	inputs.agenix.url = "github:ryantm/agenix";
-	outputs = { self, nixpkgs, agenix }@inputs:
+	inputs.private.url = "git+ssh://git@github.com/chxoe/nix-vms-private.git";
+	outputs = { self, nixpkgs, private }@inputs:
 		let
 			system-from-config = machineConfig: machineConfig.system or "x86_64-linux";
 			machine-pkgs-from-config = machineConfig:
@@ -27,9 +27,6 @@
 					};
 					modules = [
 						"${self}/config/nixos.nix"
-						agenix.nixosModules.default
-						{ environment.systemPackages = [ agenix.packages.${system-from-config machineConfig}.default ]; }
-						{ age.identityPaths = [ "/root/.ssh/id_ed25519" ]; age.secrets.domains.file = "${self}/config/domains.age"; }
 					];
 				};
 		in {

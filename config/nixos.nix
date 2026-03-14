@@ -1,7 +1,7 @@
-{ configDir, machineConfig, selfDir, userConfig, config, lib, pkgs, ... }: {	
+{ configDir, machineConfig, selfDir, userConfig, config, lib, pkgs, private, ... }: {	
 	imports = [
 		"${configDir}/hardware-configuration.nix"
-		(if machineConfig ? passthrough then (machineConfig.passthrough { self = selfDir; }) else ({...}:{}))
+		(if machineConfig ? passthrough then (machineConfig.passthrough { self = selfDir; private = private; }) else ({...}:{}))
 	];
 	boot.loader.grub = { enable = true; device = "/dev/sda"; };
 	networking.hostName = machineConfig.hostname or "nixos";
