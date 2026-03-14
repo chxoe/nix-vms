@@ -37,6 +37,7 @@
 			nixosConfigurations = {
 				roon = system-from-name "roon";
 				technitium = system-from-name "technitium";
+				caddy = system-from-name "caddy";
 			};
 		};
 }
