@@ -1,21 +1,19 @@
 {
-	hostname = "roon";
+	hostname = "matrix";
 	network = "local";
-	staticIp = "10.0.0.201";
-	##
-	unfree = [ "roon-server-earlyaccess" ];
-	passthrough = {self, ...}: {pkgs, config, ...}: {
-		
-		# For use as a build system... temporary!
-		boot.binfmt.emulatedSystems = ["aarch64-linux"];
-		# End temporary section.
-		
-		# Temporary workaround for issues with EA IPv6 changes and my network setup
-		networking.enableIPv6 = false;
-		
-		services.roon-server = {
-			package = pkgs.callPackage "${self}/custom-package/roon-server-earlyaccess.nix" {};
-			enable = true;
-		};
-	};
+	staticIp = "10.0.0.203";
+	passthrough = {private, modules, ...}: {pkgs, lib, ...}@moduleInputs:
+		lib.recursiveUpdate
+			(modules.matrix-stack {
+				nginx.acme-email = private.emails."matrix-acme";
+				element.domain = private.domains.element;
+				matrix = {
+					domain = private.domains.matrix;
+					registration-secret = private.matrixRegistrationSecret;
+				};
+			} moduleInputs)
+			{
+				networking.enableIPv6 = false;
+				networking.firewall.enable = pkgs.lib.mkForce true;
+			};
 }

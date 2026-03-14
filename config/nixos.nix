@@ -1,8 +1,9 @@
 { configDir, machineConfig, selfDir, userConfig, config, lib, pkgs, private, passthrough, ... }: {
-	imports = [ 
+	imports = [
 		( if builtins.pathExists "${configDir}/hardware-configuration.nix" then "${configDir}/hardware-configuration.nix" else "${selfDir}/config/vm-hardware-configuration.nix" )
 		passthrough
 	];
+	system.configurationRevision = selfDir.rev or "dirty-${selfDir.lastModifiedDate}";
 	boot.loader.grub = { enable = true; device = lib.mkDefault "/dev/sda"; };
 	networking.hostName = machineConfig.hostname or "nixos";
 	networking.interfaces.ens3.ipv4.addresses = lib.mkIf (machineConfig?staticIp) [
@@ -25,7 +26,7 @@
 		isNormalUser = true;
 		extraGroups = [ "wheel" ];
 		shell = pkgs.bash;
-		openssh.authorizedKeys.keys = userConfig.publicKeys; 
+		openssh.authorizedKeys.keys = userConfig.publicKeys;
 	};
 	environment.systemPackages = with pkgs; [ vim wget git curl ];
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) machineConfig.unfree or [];
