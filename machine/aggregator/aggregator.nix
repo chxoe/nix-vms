@@ -8,6 +8,12 @@
 			source = aggregator;
 			jar = "${private.aggregatorJarFile}";
 		};
+		ensureUsers = [
+			{
+				name = "aggregator";
+				ensureClauses = { superuser = true; };
+			}
+		];
 		services.postgresql = {
 			enable = true;
 			package = pkgs.postgresql_15;
