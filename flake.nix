@@ -19,10 +19,11 @@
 					configDir = "${self}/machine/${machine}";
 				in nixpkgs.lib.nixosSystem {
 					specialArgs = {
-						selfDir = "${self}";
+						selfDir = self;
 						configDir = configDir;
 						machineConfig = machineConfig;
 						userConfig = userConfig;
+						passthrough = (if machineConfig?passthrough then (machineConfig.passthrough {self=self; private=private; }) else ({...}:{}));
 						inherit inputs;
 					};
 					modules = [
