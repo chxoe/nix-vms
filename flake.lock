@@ -1,13 +1,15 @@
 {
   "nodes": {
     "aggregator": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
       "locked": {
-        "lastModified": 1715986645,
-        "narHash": "sha256-IHL2JAocizhT5f02wEPF+HAtgUFlFBMLQI5uEu4hzvI=",
+        "lastModified": 1755884886,
+        "narHash": "sha256-8YXscGaIQ0trhH4SfBonPkUQeaB3GNhSTfhlkVaqu0g=",
         "ref": "main",
-        "rev": "7868e4603e6c9611e86e1b1c402d9cc83ba94247",
-        "revCount": 350,
+        "rev": "39d959964b34641e306528e3dc7cd7229a677612",
+        "revCount": 351,
         "type": "git",
         "url": "ssh://git@github.com/chxoe/aggregator.git"
       },
@@ -59,7 +61,7 @@
     "naersk": {
       "inputs": {
         "fenix": "fenix",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1752689277,
@@ -77,6 +79,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1755615617,
+        "narHash": "sha256-HMwfAJBdrr8wXAkbGhtcby1zGFvs+StOp19xNsbqdOg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "20075955deac2583bb12f07151c2df830ef346b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1752077645,
         "narHash": "sha256-HM791ZQtXV93xtCY+ZxG1REzhQenSQO020cu6rHtAPk=",
         "owner": "NixOS",
@@ -91,7 +109,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1755615617,
         "narHash": "sha256-HMwfAJBdrr8wXAkbGhtcby1zGFvs+StOp19xNsbqdOg=",
@@ -128,7 +146,7 @@
         "aggregator": "aggregator",
         "drive": "drive",
         "naersk": "naersk",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "private": "private"
       }
     },
