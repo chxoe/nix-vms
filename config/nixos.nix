@@ -1,5 +1,8 @@
 { configDir, machineConfig, selfDir, userConfig, config, lib, pkgs, ... }: {	
-	imports = [ "${configDir}/hardware-configuration.nix" ];
+	imports = [
+		"${configDir}/hardware-configuration.nix"
+		(if machineConfig ? passthrough then (machineConfig.passthrough { self = selfDir; }) else ({...}:{}))
+	];
 	boot.loader.grub = { enable = true; device = "/dev/sda"; };
 	networking.hostName = machineConfig.hostname or "nixos";
 	networking.interfaces.ens3.ipv4.addresses = lib.mkIf (machineConfig.staticIp != null) [
@@ -23,6 +26,7 @@
 		openssh.authorizedKeys.keys = userConfig.publicKeys; 
 	};
 	environment.systemPackages = with pkgs; [ vim wget git curl ];
+	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) machineConfig.unfree or [];
 	services.openssh.enable = true;
 	system.stateVersion = "24.11";
 }

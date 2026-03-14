@@ -2,8 +2,8 @@
 	hostname = "caddy";
 	network = "external";
 	##
-	passthrough = pkgs: config:
-		let domains = import "${config}/config/domains.nix";
+	passthrough = {self}: {pkgs, config, ...}:
+		let domains = import config.age.secrets.domains.path;
 		in {
 			services.caddy = {
 				enable = true;

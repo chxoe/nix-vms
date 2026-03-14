@@ -27,7 +27,6 @@
 					};
 					modules = [
 						"${self}/config/nixos.nix"
-						((machineConfig.passthrough or (pkgs: self: {})) machinePkgs self)
 						agenix.nixosModules.default
 						{ environment.systemPackages = [ agenix.packages.${system-from-config machineConfig}.default ]; }
 						{ age.identityPaths = [ "/root/.ssh/id_ed25519" ]; age.secrets.domains.file = "${self}/config/domains.age"; }
