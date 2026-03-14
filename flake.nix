@@ -94,6 +94,7 @@
 					caddy-public = system-from-name "caddy-public";
 						# auth-public = system-from-name "auth-public";
 						aggregator = system-from-name "aggregator";
+				matrix = system-from-name "matrix";
 				
 				# Everything in-between
 				# jumpbox = system-from-name "jumpbox";
