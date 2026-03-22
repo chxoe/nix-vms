@@ -13,7 +13,7 @@ buildDotnetModule rec {
     owner = "TechnitiumSoftware";
     repo = "TechnitiumLibrary";
     tag = version;
-    hash = "sha256-46RoUxfMMVqh5DQjY3Q8JpIE1afljduHvbBgL1n7suA=";
+    hash = "sha256-Z8qGp9zMsmPNroO2cS7t7A4lwQ7pnGdzCAcCCEYoXrE=";
     name = "${pname}-${version}";
   };
 
