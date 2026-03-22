@@ -19,8 +19,8 @@ buildDotnetModule rec {
     name = "${pname}-${version}";
   };
 
-  dotnet-sdk = dotnetCorePackages.sdk_8_0;
-  dotnet-runtime = dotnetCorePackages.aspnetcore_8_0;
+  dotnet-sdk = dotnetCorePackages.sdk_9_0;
+  dotnet-runtime = dotnetCorePackages.aspnetcore_9_0;
 
   nugetDeps = []; #./nuget-deps.json;
 
