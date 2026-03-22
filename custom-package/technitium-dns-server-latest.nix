@@ -15,7 +15,7 @@ buildDotnetModule rec {
     owner = "TechnitiumSoftware";
     repo = "DnsServer";
     tag = "v${version}";
-    hash = "sha256-igUCehSEy/yjwzDwgdix2vp0k3xy2fEhkVu7xp9PLvw=";
+    hash = "sha256-NUH1gn8kdtMBKC5+XEqqTGySNMCDFGF5yy6NbGeRvvY=";
     name = "${pname}-${version}";
   };
 
