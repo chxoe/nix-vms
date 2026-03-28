@@ -91,6 +91,8 @@
 				# Local network only
 				roon = system-from-name "roon";
 				technitium = system-from-name "technitium";
+				ytdl = system-from-name "ytdl";
+				photoprism = system-from-name "photoprism";
 
 				# Publicly associated with me (app names and details hidden for privacy)
 				jumpbox-public = system-from-name "jumpbox-public";

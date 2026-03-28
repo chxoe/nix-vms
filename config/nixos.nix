@@ -5,10 +5,12 @@
 	];
 	system.configurationRevision = selfDir.rev or "dirty-${selfDir.lastModifiedDate}";
 	boot.loader.grub = { enable = true; device = lib.mkDefault "/dev/sda"; };
+	boot.growPartition = true;
 	networking.hostName = machineConfig.hostname or "nixos";
 	networking.interfaces.ens3.ipv4.addresses = lib.mkIf (machineConfig?staticIp) [
 		{ address = machineConfig.staticIp; prefixLength = 24; }
 	];
+	environment.enableAllTerminfo = true;
 	networking.defaultGateway = {
 		"local" = { interface = "ens3"; address = "10.0.0.200"; };
 		"external" = null;
