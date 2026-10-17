@@ -31,6 +31,14 @@
 				ensurePermissions."photoprism.*" = "ALL PRIVILEGES";
 			} ];
 		};
+		services.restic = {
+			enable = true;
+			backups = {
+				photoprism = {
+					
+				};
+			};
+		};
 	};
 }
 

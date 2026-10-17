@@ -2,7 +2,7 @@
 	description = "System configuration helper";
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-		private.url = "git+ssh://git@github.com/chxoe/nix-vms-private.git?ref=main";
+		private.url = "git+file:///home/chloe/nix-vms-private";
 		naersk.url = "github:nix-community/naersk";
 		drive = { url = "git+ssh://git@github.com/chxoe/drive.git?ref=main"; flake = false; };
 		aggregator.url = "git+ssh://git@github.com/chxoe/aggregator.git?ref=main";
@@ -93,6 +93,7 @@
 				technitium = system-from-name "technitium";
 				ytdl = system-from-name "ytdl";
 				photoprism = system-from-name "photoprism";
+				radicle = system-from-name "radicle";
 
 				# Publicly associated with me (app names and details hidden for privacy)
 				jumpbox-public = system-from-name "jumpbox-public";
