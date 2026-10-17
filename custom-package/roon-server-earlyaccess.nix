@@ -24,7 +24,7 @@ stdenv.mkDerivation {
   inherit version;
 
   src = fetchurl {
-    url = "https://download.roonlabs.com/updates/production/RoonServer_linuxx64_${urlVersion}.tar.bz2";
+    url = "https://download.roonlabs.com/updates/earlyaccess/RoonServer_linuxx64_${urlVersion}.tar.bz2";
     hash = "sha256-j5rw9OUkF4Vdsfmi7j/x9i6aKSMDBZqIos1tzrq2h50=";
   };
 
